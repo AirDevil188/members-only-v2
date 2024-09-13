@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("node:path");
 const dotenv = require("dotenv");
 const session = require("express-session");
 const passport = require("passport");
@@ -25,4 +26,4 @@ app.use((err, req, res, next) => {
   return res.status(500).send(err);
 });
 
-app.listen(port, () => console.log(`app is listening on port ${port}.`));
+app.listen(port, () => console.log(`App is listening on the ${port}`));
