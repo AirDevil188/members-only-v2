@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 const session = require("express-session");
 const passport = require("passport");
 
+const signUpRouter = require("./routes/signUpRouter");
+
 dotenv.config();
 
 const port = process.env.PORT;
@@ -23,6 +25,7 @@ app.use(
 );
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+app.use("/sign-up", signUpRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
