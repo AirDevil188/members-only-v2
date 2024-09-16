@@ -37,6 +37,7 @@ const postSignUp = [
     if (!errors.isEmpty()) {
       return res.render("sign-up", {
         title: "Sign Up",
+        errors: errors.array(),
       });
     }
     bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
