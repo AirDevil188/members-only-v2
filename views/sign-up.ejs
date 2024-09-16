@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <section class="log-in-section">
+        <form method="POST">
+          <div class="form-grouo">
+            <label for="first_name">First Name: </label>
+            <input type="text" name="first_name" id="first_name" />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name: </label>
+            <input type="text" name="last_name" id="last_name" />
+          </div>
+          <div class="form-group">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" />
+          </div>
+          <div class="button-container">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+      <%- include("errors") %>
+    </main>
+    <footer></footer>
+  </body>
+</html>
