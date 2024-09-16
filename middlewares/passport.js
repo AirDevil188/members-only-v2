@@ -17,6 +17,7 @@ const localPassportStrategy = () => {
         if (!match) {
           return done(null, false, { message: "Incorrect password" });
         }
+        return done(null, user);
       } catch (err) {
         return done(err);
       }
@@ -25,3 +26,16 @@ const localPassportStrategy = () => {
 };
 
 localPassportStrategy();
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.deserializeUser(id);
+    done(null, user);
+  } catch (err) {
+    return done(err);
+  }
+});
