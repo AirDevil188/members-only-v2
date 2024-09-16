@@ -7,6 +7,14 @@ async function searchForUser(username) {
   return rows[0];
 }
 
+async function createNewUser(first_name, last_name, username, password) {
+  return await pool.query(
+    "INSERT INTO users(first_name, last_name, username, password) VALUES ($1, $2, $3, $4)",
+    [first_name, last_name, username, password]
+  );
+}
+
 module.exports = {
   searchForUser,
+  createNewUser,
 };
