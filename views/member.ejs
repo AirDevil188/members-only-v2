@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <body>
+      <header></header>
+      <section class="member-section">
+        <% if (!currentUser.member) { %>
+        <form action="/membership" method="POST">
+          <div class="form-group">
+            <label for="secret-password">Secret Password: </label>
+            <input
+              type="password"
+              name="secret-password"
+              id="secret-password"
+              autocomplete="off"
+            />
+          </div>
+          <div class="button-container">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+        <% } else { %>
+        <h3>You are already an member</h3>
+        <% }%>
+      </section>
+      <%- include("errors") %>
+      <footer></footer>
+    </body>
+  </head>
+</html>
