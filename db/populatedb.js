@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS users(
     last_name VARCHAR (255),
     full_name TEXT GENERATED ALWAYS AS (first_name || ' ' || last_name) STORED, 
     username VARCHAR(255),
-    password VARCHAR(255));
+    password VARCHAR(255),
+    member  BOOLEAN DEFAULT FALSE;
 
 CREATE TABLE IF NOT EXISTS messages(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
@@ -17,4 +18,5 @@ CREATE TABLE IF NOT EXISTS messages(
     text TEXT, 
     timestamp TIMESTAMP, 
     username  INTEGER REFERENCES users(id));
+    
 `;
