@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const db = require("../db/queries");
 
 dotenv.config();
-console.log(process.env.SECRET);
 const validateMembership = [
   body("secret-password")
     .custom((value, {}) => {
