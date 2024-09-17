@@ -19,8 +19,13 @@ async function deserializeUser(id) {
   return rows[0];
 }
 
+async function becomeMember(id) {
+  return await pool.query("UPDATE users SET member = true WHERE id = $1", [id]);
+}
+
 module.exports = {
   searchForUser,
   createNewUser,
   deserializeUser,
+  becomeMember,
 };
