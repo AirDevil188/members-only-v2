@@ -22,6 +22,11 @@ const validateUser = [
     .trim()
     .isLength({ min: 1 })
     .withMessage(`Password ${lengthErr}`),
+  body("confirm-password")
+    .custom((value, { req }) => {
+      return value === req.body.password;
+    })
+    .withMessage("Password doesn't match."),
 ];
 
 const getSignUp = asyncHandler(async (req, res, next) => {
