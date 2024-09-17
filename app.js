@@ -6,17 +6,14 @@ const passport = require("passport");
 
 const signUpRouter = require("./routes/signUpRouter");
 const logInRouter = require("./routes/logInRouter");
+const memberRouter = require("./routes/memberRouter");
 
 dotenv.config();
 
 const port = process.env.PORT;
 const app = express();
 
-app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
 require("./middlewares/passport");
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -25,9 +22,19 @@ app.use(
   })
 );
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
+app.use(express.static(path.join(__dirname, "public")));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.use(express.urlencoded({ extended: false }));
 app.use("/sign-up", signUpRouter);
 app.use("/", logInRouter);
+app.use("/membership", memberRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
