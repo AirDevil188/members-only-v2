@@ -23,9 +23,17 @@ async function becomeMember(id) {
   return await pool.query("UPDATE users SET member = true WHERE id = $1", [id]);
 }
 
+async function createNewMessage(title, text, id) {
+  return await pool.query(
+    "INSERT INTO messages(title, text, username) VALUES ($1, $2, $3)",
+    [title, text, id]
+  );
+}
+
 module.exports = {
   searchForUser,
   createNewUser,
   deserializeUser,
   becomeMember,
+  createNewMessage,
 };
