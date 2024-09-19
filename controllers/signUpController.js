@@ -30,9 +30,13 @@ const validateUser = [
 ];
 
 const getSignUp = asyncHandler(async (req, res, next) => {
-  res.render("sign-up", {
-    title: "Sign Up",
-  });
+  if (!res.locals.currentUser) {
+    res.render("sign-up", {
+      title: "Sign Up",
+    });
+  } else {
+    res.redirect("/");
+  }
 });
 
 const postSignUp = [
