@@ -33,9 +33,10 @@
           <% if (messages) { %> <% messages.forEach(message => { %>
           <h3><%= message.message_title %></h3>
           <div><p>Message: <%= message.message_text %></p></div>
+          <% if (currentUser.member) { %>
           <span>Time: <%= message.message_timestamp %></span>
           <span>User: <strong><%= message.user_username %></strong></span>
-          <% }) %> <% } %>
+          <% } %> <% }) %> <% } %>
         </div>
       </section>
       <% } %>

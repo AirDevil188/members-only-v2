@@ -13,7 +13,7 @@ const validateMessage = [
 ];
 
 const getMessages = asyncHandler(async (req, res, next) => {
-  console.log(res.locals.currentUser.id);
+  console.log(res.locals.currentUser);
   if (res.locals.currentUser) {
     res.render("messages-form", {
       title: "Create New Message",
