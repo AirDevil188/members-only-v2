@@ -30,10 +30,23 @@ async function createNewMessage(title, text, id) {
   );
 }
 
+async function getMessages() {
+  const { rows } = await pool.query(`
+    SELECT messages.title as message_title, messages.text as message_text,
+    messages.timestamp as message_timestamp,
+    users.username as user_username
+    FROM messages
+    INNER JOIN users
+    ON users.id = messages.username;
+    `);
+  return rows;
+}
+
 module.exports = {
   searchForUser,
   createNewUser,
   deserializeUser,
   becomeMember,
   createNewMessage,
+  getMessages,
 };
