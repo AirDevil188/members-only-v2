@@ -5,7 +5,7 @@
   <body>
     <header></header>
     <main>
-      <% if (!user) { %>
+      <% if (!currentUser) { %>
       <section class="log-in-section">
         <form action="/" method="POST">
           <div class="form-group">
@@ -27,8 +27,16 @@
         </form>
       </section>
       <% } else { %>
-      <section class="welcome-section">
-        <h3>Welcome Back <%= user.username %></h3>
+      <section class="messages-section">
+        <h3>Welcome Back <%= currentUser.username %></h3>
+        <div class="message-container">
+          <% if (messages) { %> <% messages.forEach(message => { %>
+          <h3><%= message.message_title %></h3>
+          <div><p>Message: <%= message.message_text %></p></div>
+          <span>Time: <%= message.message_timestamp %></span>
+          <span>User: <strong><%= message.user_username %></strong></span>
+          <% }) %> <% } %>
+        </div>
       </section>
       <% } %>
     </main>
