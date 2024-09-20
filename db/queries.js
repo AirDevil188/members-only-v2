@@ -34,12 +34,21 @@ async function getMessages() {
   const { rows } = await pool.query(`
     SELECT messages.title as message_title, messages.text as message_text,
     messages.timestamp as message_timestamp,
+    messages.id as message_id,
     users.username as user_username
     FROM messages
     INNER JOIN users
     ON users.id = messages.username;
     `);
   return rows;
+}
+
+async function becomeAdmin(id) {
+  return await pool.query("UPDATE users SET admin = true WHERE id = $1", [id]);
+}
+
+async function deleteMessage(id) {
+  return await pool.query("DELETE FROM messages WHERE id = $1", [id]);
 }
 
 module.exports = {
@@ -49,4 +58,6 @@ module.exports = {
   becomeMember,
   createNewMessage,
   getMessages,
+  becomeAdmin,
+  deleteMessage,
 };
