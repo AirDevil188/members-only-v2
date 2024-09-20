@@ -1,3 +1,4 @@
+const { Client } = require("pg");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -21,3 +22,23 @@ CREATE TABLE IF NOT EXISTS messages(
     username  INTEGER REFERENCES users(id));
     
 `;
+
+const connectString = (process.env.STATUS = "local"
+  ? process.env.LOCAL_DB_CONNECTION_STRING
+  : process.env.EXTERNAL_DB_CONNECTION_STRING);
+
+console.log(connectString);
+async function mainDriver() {
+  console.log("sending information...");
+  const client = new Client({
+    connectionString: connectString,
+  });
+
+  await client.connect();
+  await client.query(SQL);
+  await client.end();
+  console.log("done");
+  console.log(client);
+}
+
+mainDriver();
