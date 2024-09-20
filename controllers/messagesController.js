@@ -35,14 +35,18 @@ const postMessages = [
       });
     }
     const { title, text } = req.body;
-    const { id } = res.locals.currentUser.id;
-    console.log(id, "id");
     await db.createNewMessage(title, text, res.locals.currentUser.id);
     res.redirect("/");
   }),
 ];
 
+const deleteMessage = asyncHandler(async (req, res, next) => {
+  await db.deleteMessage(req.params.id);
+  res.redirect("/");
+});
+
 module.exports = {
   getMessages,
   postMessages,
+  deleteMessage,
 };
