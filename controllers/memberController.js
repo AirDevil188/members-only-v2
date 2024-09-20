@@ -25,7 +25,6 @@ const getMember = asyncHandler(async (req, res, next) => {
 const postMember = [
   validateMembership,
   asyncHandler(async (req, res, next) => {
-    console.log(res.locals.currentUser);
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
