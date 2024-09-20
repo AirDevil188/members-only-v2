@@ -8,6 +8,7 @@ const signUpRouter = require("./routes/signUpRouter");
 const logInRouter = require("./routes/logInRouter");
 const memberRouter = require("./routes/memberRouter");
 const messagesRouter = require("./routes/messagesRouter");
+const adminRouter = require("./routes/adminRouter");
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/sign-up", signUpRouter);
 app.use("/", logInRouter);
 app.use("/membership", memberRouter);
+app.use("/admin", adminRouter);
 app.use("/messages", messagesRouter);
 
 app.use((err, req, res, next) => {
