@@ -36,7 +36,13 @@
           <% if (currentUser.member) { %>
           <span>Time: <%= message.message_timestamp %></span>
           <span>User: <strong><%= message.user_username %></strong></span>
-          <% } %> <% }) %> <% } %>
+          <% if (currentUser.admin) { %>
+          <form action="<%=message.message_id %>/delete" method="post">
+            <div class="button-container">
+              <button type="submit">Delete</button>
+            </div>
+          </form>
+          <% } %> <% } %> <% }) %> <% } %>
         </div>
       </section>
       <% } %>
