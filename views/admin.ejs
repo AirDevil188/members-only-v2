@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <section class="admin-section">
+        <form action="/admin" method="POST">
+          <div class="form-group">
+            <label for="secret-password">Secret Password: </label>
+            <input
+              type="password"
+              name="secret-password"
+              id="secret-password"
+            />
+            <div class="button-container">
+              <button type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
